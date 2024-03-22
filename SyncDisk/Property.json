@@ -1,0 +1,19 @@
+{
+  "ROOT": "E:",
+  "SYNC": [
+    {
+      "SOURCE": "E:\\Workspace\\MyTools\\SyncDisk\\Test\\A",
+      "TARGET": "E:\\Workspace\\MyTools\\SyncDisk\\Test\\B",
+      "NO_SYNC": [
+        "withoutSync"
+      ]
+    },
+    {
+      "SOURCE": "E:\\Workspace\\MyTools\\SyncDisk\\Test\\AA",
+      "TARGET": "E:\\Workspace\\MyTools\\SyncDisk\\Test\\BB",
+      "NO_SYNC": [
+        "withoutSync"
+      ]
+    }
+  ]
+}
