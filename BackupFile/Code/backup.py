@@ -203,7 +203,7 @@ def copy_file(path_target, mapping):
 
             os.makedirs(target_dir, exist_ok=True)
             shutil.copy2(mapping[file_type][hash_key], target_path)
-            print(f'Copy {target_path} -> {mapping[file_type][hash_key]}')
+            print(f'Copy {mapping[file_type][hash_key]} -> {target_path}')
 
     # Windows 平台
     if system == 'Windows':
@@ -229,23 +229,23 @@ def init_backup():
         file.close()
 
     init_tree, init_mapping, init_mapping_hash_file = get_tree(backup_data['source'])
-    # copy_file(backup_data['target'], init_mapping)
-    #
-    # # 写入 Mapping 数据
-    # with open(os.path.join(backup_data['target'], '.mapping', 'hash2file.json'), 'w', encoding='UTF-8') as file_mapping:
-    #     json.dump(init_mapping_hash_file, file_mapping, ensure_ascii=False, indent=4)
-    #     file_mapping.close()
-    #
-    # # 写入当前文件树
-    # with open(os.path.join(backup_data['target'], '.tree', f'{int(round(time.time() * 1000))}.json'), 'w', encoding='UTF-8') as file_tree:
-    #     json.dump(init_tree, file_tree, ensure_ascii=False, indent=4)
-    #     file_tree.close()
-    #
-    # # 更新数据
-    # with open(os.path.join(backup_data['target'], 'SeeChen-Backup.json'), 'w') as file_backup_main:
-    #     backup_data['INIT'] = True
-    #     json.dump(backup_data, file_backup_main, ensure_ascii=False, indent=4)
-    #     file_backup_main.close()
+    copy_file(backup_data['target'], init_mapping)
+
+    # 写入 Mapping 数据
+    with open(os.path.join(backup_data['target'], '.mapping', 'hash2file.json'), 'w', encoding='UTF-8') as file_mapping:
+        json.dump(init_mapping_hash_file, file_mapping, ensure_ascii=False, indent=4)
+        file_mapping.close()
+
+    # 写入当前文件树
+    with open(os.path.join(backup_data['target'], '.tree', f'{int(round(time.time() * 1000))}.json'), 'w', encoding='UTF-8') as file_tree:
+        json.dump(init_tree, file_tree, ensure_ascii=False, indent=4)
+        file_tree.close()
+
+    # 更新数据
+    with open(os.path.join(backup_data['target'], 'SeeChen-Backup.json'), 'w') as file_backup_main:
+        backup_data['INIT'] = True
+        json.dump(backup_data, file_backup_main, ensure_ascii=False, indent=4)
+        file_backup_main.close()
 
     pass
 
